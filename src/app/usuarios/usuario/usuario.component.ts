@@ -11,6 +11,8 @@ import { AppState } from 'src/app/store/app.reducers';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
+  loading: boolean= false
+  error: any
 
   usuario: Usuario;
 
@@ -19,8 +21,10 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.select('usuario').subscribe(({user})=>{
+    this.store.select('usuario').subscribe(({user, loading, error})=>{
       this.usuario = user;
+      this.loading = loading;
+      this.error = error
 
     })
 
